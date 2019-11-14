@@ -1,0 +1,11 @@
+{
+  "name": "tamawotzi",
+  "version": "1.0.0",
+  "description": "tamawotzi",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "jb",
+  "license": "ISC"
+}
