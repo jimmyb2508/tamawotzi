@@ -85,5 +85,112 @@ describe('feed', () => {
     pet.feed();
 
     expect(pet.hunger).toEqual(0);
-  })
+  });
+  it('throws an error if the pet is not alive', () => {
+    const pet = new Pet('Billy');
+
+    pet.age = 30;
+
+    expect(() => pet.feed()).toThrow('Your pet is no longer alive :(');
+  });
+});
+
+describe('poop', () => {
+  it('increases poo by 1', () => {
+    const pet = new Pet('Samson');
+
+    pet.poo = 0
+    pet.poop()
+
+    expect(pet.poo).toEqual(1)
+  });
+  it('poo should never exceed 3', () => {
+    const pet = new Pet('Trumpy');
+
+    pet.poo = 3
+    pet.poop()
+
+    expect(pet.poo).toEqual(3)
+  });
+});
+
+describe('checkUp', () => {
+  it('requests walk if fitness 3 or below', () => {
+    const pet = new Pet('Sarah');
+
+    pet.fitness = 3
+    pet.checkUp()
+
+    expect(pet.checkUp()).toBe('I need a walk');
+  });
+  it('requests feed if hunger is 5 or more', () => {
+    const pet = new Pet('Willy');
+
+    pet.hunger = 5;
+    pet.checkUp()
+
+    expect(pet.checkUp()).toBe('I am hungry');
+  });
+  it('requests walk and feed if hungry and unfit', () => {
+    const pet = new Pet('Hobbit');
+
+    pet.fitness = 3
+    pet.hunger = 5
+    pet.checkUp()
+
+    expect(pet.checkUp()).toBe('I am hungry AND I need a walk');
+  });
+  it('states all OK if fit and fed', () => {
+    const pet = new Pet('Frodo');
+
+    pet.fitness = 10;
+    pet.hunger = 3;
+    pet.checkUp()
+
+    expect(pet.checkUp()).toBe('I feel great!');
+  });
+});
+
+describe('isAlive', () => {
+  it('returns false if fitness is 0 or below', () => {
+    const pet = new Pet('Jo');
+
+    pet.fitness = 0
+    pet.isAlive;
+
+    expect(pet.isAlive).toBe(false);
+  });
+  it('returns false if pet hunger is 10 or more', () => {
+    const pet = new Pet('Herschel');
+
+    pet.hunger = 10
+    pet.isAlive;
+
+    expect(pet.isAlive).toBe(false);
+  });
+  it('returns false if pet age is 30 or more', () => {
+    const pet = new Pet('Tilda');
+
+    pet.age = 30
+    pet.isAlive;
+
+    expect(pet.isAlive).toBe(false);
+  });
+  it('returns true if otherwise', () => {
+    const pet = new Pet('Simon');
+
+    pet.fitness = 5
+    pet.hunger = 5
+    pet.age = 5
+
+    expect(pet.isAlive).toBe(true);
+  });
+});
+
+describe('haveBaby', () => {
+  it('parent has child', () => {
+    const pet = new Pet('Fido');
+    pet.haveBaby('Kid');
+    expect(pet.children).toBeInstanceOf(Array);
+  });
 });
