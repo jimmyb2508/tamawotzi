@@ -2,7 +2,7 @@ const STARTING_AGE = 0;
 const MAXIMUM_FITNESS = 10;
 const MAXIMUM_POO = 3;
 const NEED_WALK = 'I need a walk';
-const NEED_FEED = 'I am hungry';
+const NEED_FEED = 'I am hungry!';
 const HUNGRY_UNFIT= 'I am hungry AND I need a walk';
 const FEEL_GOOD = 'I feel great!';
 
@@ -77,23 +77,34 @@ Pet.prototype.haveBaby = function(babyName) {
 
 const newPet = new Pet('Tamawotzi');
 
-//const petStatus = `${newPet.name} is ${newPet.age} with a hunger level of ${newPet.hunger} and a fitness level of ${newPet.fitness}.`
-
-//const ageStatus = document.getElementById('checkStatus').innerHTML = `${newPet.checkUp()}`
+document.getElementById('checkStatus').innerHTML = `${newPet.checkUp()}`
 document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
 document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
+document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
 
 function upGrow() {
   newPet.growUp();
+  document.getElementById('checkStatus').innerHTML = `${newPet.checkUp()}`
   document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
+  document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
+  document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
 }
 
 function exercise() {
   newPet.walk();
+  document.getElementById('checkStatus').innerHTML = `${newPet.checkUp()}`
+  document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
   document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
+  document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
 }
 
+function eat() {
+  newPet.feed();
+  document.getElementById('checkStatus').innerHTML = `${newPet.checkUp()}`
+  document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
+  document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
+  document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
+}
 
-//document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
 
 module.exports = Pet;
