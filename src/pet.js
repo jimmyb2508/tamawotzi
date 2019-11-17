@@ -76,8 +76,24 @@ Pet.prototype.haveBaby = function(babyName) {
 }
 
 const newPet = new Pet('Tamawotzi');
-let status = `${newPet.name} is ${newPet.age}, has a hunger level of ${newPet.hunger} and a fitness level of ${newPet.fitness}.`;
 
-document.getElementById('petStatus').innerHTML = status;
+//const petStatus = `${newPet.name} is ${newPet.age} with a hunger level of ${newPet.hunger} and a fitness level of ${newPet.fitness}.`
+
+//const ageStatus = document.getElementById('checkStatus').innerHTML = `${newPet.checkUp()}`
+document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
+document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
+
+function upGrow() {
+  newPet.growUp();
+  document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
+}
+
+function exercise() {
+  newPet.walk();
+  document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
+}
+
+
+//document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
 
 module.exports = Pet;
