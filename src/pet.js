@@ -1,6 +1,6 @@
 const STARTING_AGE = 0;
 const MAXIMUM_FITNESS = 10;
-const MAXIMUM_POO = 3;
+const MAXIMUM_POO = 5;
 const NEED_WALK = 'I need a walk';
 const NEED_FEED = 'I am hungry!';
 const HUNGRY_UNFIT= 'I am hungry AND I need a walk';
@@ -17,7 +17,7 @@ function Pet(name) {
 
 Pet.prototype = {
   get isAlive() {
-    return this.age < 30 && this.hunger < 10 && this.fitness > 0;
+    return this.age < 30 && this.hunger < 10 && this.fitness > 0 && this.poo <= 5;
   }
 }
 
@@ -27,6 +27,7 @@ Pet.prototype.growUp = function() {
   } this.age += 1;
   this.hunger += 5;
   this.fitness -= 3;
+  this.poo += 1;
 };
 
 Pet.prototype.walk = function() {
@@ -52,8 +53,8 @@ Pet.prototype.feed = function() {
 Pet.prototype.poop = function() {
   if (!this.isAlive) {
     throw new Error('Your pet is no longer alive :(');
-  } if ((this.poo + 1) <= MAXIMUM_POO) {
-    this.poo += 1;
+  } if ((this.poo - 1) <= MAXIMUM_POO) {
+    this.poo -= 1;
   } else {
     this.poo = MAXIMUM_POO;
   }
@@ -81,6 +82,7 @@ document.getElementById('checkStatus').innerHTML = `${newPet.checkUp()}`
 document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
 document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
 document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
+document.getElementById('Poop').innerHTML = `Poo: ${newPet.poo}`;
 
 function upGrow() {
   newPet.growUp();
@@ -88,6 +90,7 @@ function upGrow() {
   document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
   document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
   document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
+  document.getElementById('Poop').innerHTML = `Poo: ${newPet.poo}`;
 }
 
 function exercise() {
@@ -96,6 +99,7 @@ function exercise() {
   document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
   document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
   document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
+  document.getElementById('Poop').innerHTML = `Poo: ${newPet.poo}`;
 }
 
 function eat() {
@@ -104,7 +108,16 @@ function eat() {
   document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
   document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
   document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
+  document.getElementById('Poop').innerHTML = `Poo: ${newPet.poo}`;
 }
 
+function cleanUp() {
+  newPet.poop();
+  document.getElementById('checkStatus').innerHTML = `${newPet.checkUp()}`
+  document.getElementById('Age').innerHTML = `Age: ${newPet.age}`;
+  document.getElementById('Fitness').innerHTML = `Fitness: ${newPet.fitness}`;
+  document.getElementById('Hunger').innerHTML = `Hunger: ${newPet.hunger}`;
+  document.getElementById('Poop').innerHTML = `Poo: ${newPet.poo}`;
+}
 
 module.exports = Pet;

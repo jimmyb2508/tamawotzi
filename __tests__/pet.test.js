@@ -104,13 +104,13 @@ describe('poop', () => {
 
     expect(pet.poo).toEqual(1)
   });
-  it('poo should never exceed 3', () => {
+  it('poo should never exceed 5', () => {
     const pet = new Pet('Trumpy');
 
-    pet.poo = 3
+    pet.poo = 5
     pet.poop()
 
-    expect(pet.poo).toEqual(3)
+    expect(pet.poo).toEqual(5)
   });
 });
 
@@ -129,7 +129,7 @@ describe('checkUp', () => {
     pet.hunger = 5;
     pet.checkUp()
 
-    expect(pet.checkUp()).toBe('I am hungry');
+    expect(pet.checkUp()).toBe('I am hungry!');
   });
   it('requests walk and feed if hungry and unfit', () => {
     const pet = new Pet('Hobbit');
